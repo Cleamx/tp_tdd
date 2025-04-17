@@ -69,9 +69,21 @@ class CarControllerIntegrationTest {
                 .param("registrationNumber", "789GHI")
                 .param("model", "Ford"))
                 .andExpect(status().isOk());
-    
+
         assertTrue(carRepository.getAllCars().stream()
                 .anyMatch(car -> car.getRegistrationNumber().equals("789GHI") && car.getModel().equals("Ford")));
+    }
+
+    @Test
+    void testSearchCarsByModel() throws Exception {
+        carRepository.addCar(new Car("123ABC", "Toyota", true));
+        carRepository.addCar(new Car("456DEF", "Honda", true));
+
+        mockMvc.perform(get("/cars/search")
+                .param("model", "Toyota"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].registrationNumber").value("123ABC"))
+                .andExpect(jsonPath("$[0].model").value("Toyota"));
     }
 
 }
