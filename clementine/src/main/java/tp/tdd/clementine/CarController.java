@@ -36,4 +36,9 @@ public class CarController {
     public void addCar(@RequestParam String registrationNumber, @RequestParam String model) {
         carRentalService.addCar(registrationNumber, model);
     }
+
+    @GetMapping("/search")
+    public List<Car> searchCarsByModel(@RequestParam String model) {
+        return carRentalService.searchCarsByModel(model);
+    }
 }

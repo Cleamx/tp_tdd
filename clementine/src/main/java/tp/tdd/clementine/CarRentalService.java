@@ -40,5 +40,11 @@ public class CarRentalService {
         }
         carRepository.addCar(new Car(registrationNumber, model, true));
     }
+    
+    public List<Car> searchCarsByModel(String model) {
+        return carRepository.getAllCars().stream()
+                .filter(car -> car.getModel().equalsIgnoreCase(model))
+                .toList();
+    }
 
 }
