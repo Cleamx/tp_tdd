@@ -33,4 +33,12 @@ public class CarRentalService {
             carRepository.updateCar(c);
         });
     }
+
+    public void addCar(String registrationNumber, String model) {
+        if (carRepository.findByRegistrationNumber(registrationNumber).isPresent()) {
+            throw new IllegalArgumentException("Car with this registration number already exists.");
+        }
+        carRepository.addCar(new Car(registrationNumber, model, true));
+    }
+
 }

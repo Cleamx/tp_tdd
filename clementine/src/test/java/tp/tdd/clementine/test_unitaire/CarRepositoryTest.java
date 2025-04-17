@@ -1,7 +1,10 @@
-package tp.tdd.clementine;
+package tp.tdd.clementine.test_unitaire;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import tp.tdd.clementine.Car;
+import tp.tdd.clementine.CarRepository;
 
 import java.util.Optional;
 
@@ -13,7 +16,7 @@ class CarRepositoryTest {
 
     private Car car;
     private CarRepository carRepository;
-    
+
     @BeforeEach
     void setUp() {
         carRepository = new CarRepository();
